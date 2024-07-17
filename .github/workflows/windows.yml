@@ -22,14 +22,6 @@ jobs:
           fetch-depth: 1
           submodules: true
 
-#      - name: Cache restored NuGet packages
-#        uses: actions/cache@v2
-#        with:
-#          path: ${{ github.workspace }}/.nuget/packages
-#          key: ${{ runner.os }}-nuget-${{ hashFiles('**/packages.lock.json') }}
-#          restore-keys: |
-#            ${{ runner.os }}-nuget-
-
       - name: NuGet restore
         shell: cmd
         run: |
