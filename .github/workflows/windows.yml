@@ -83,7 +83,6 @@ jobs:
         shell: cmd
         run: |
           dotnet build src/OpenCvSharp.Extensions/OpenCvSharp.Extensions.csproj -f net6.0 -p:configuration=Release -maxcpucount
-          dotnet build src/OpenCvSharp.WpfExtensions/OpenCvSharp.WpfExtensions.csproj -f net6.0-windows -p:configuration=Release -maxcpucount
 
       - name: Pack NuGet packages
         shell: powershell
@@ -103,7 +102,7 @@ jobs:
           $windowsNuspec = "${env:GITHUB_WORKSPACE}\nuget\OpenCvSharp4.Windows.nuspec"
           $extensionsNuspec = "${env:GITHUB_WORKSPACE}\nuget\OpenCvSharp4.Extensions.nuspec"
           $wpfExtensionsNuspec = "${env:GITHUB_WORKSPACE}\nuget\OpenCvSharp4.WpfExtensions.nuspec"
-          $nuspecFiles = @($windowsNuspec, $extensionsNuspec, $wpfExtensionsNuspec)
+          $nuspecFiles = @($extensionsNuspec)
           foreach ( $nuspecFile in $nuspecFiles ) {
               [xml]$xml = Get-Content $nuspecFile
               foreach ($group in $xml.package.metadata.dependencies.ChildNodes){
@@ -123,9 +122,7 @@ jobs:
           }
 
           nuget pack nuget/OpenCvSharp4.nuspec -OutputDirectory artifacts -Symbols -SymbolPackageFormat snupkg
-          nuget pack nuget/OpenCvSharp4.Windows.nuspec -OutputDirectory artifacts
           nuget pack nuget/OpenCvSharp4.Extensions.nuspec -OutputDirectory artifacts -Symbols -SymbolPackageFormat snupkg
-          nuget pack nuget/OpenCvSharp4.WpfExtensions.nuspec -OutputDirectory artifacts -Symbols -SymbolPackageFormat snupkg
           nuget pack nuget/OpenCvSharp4.runtime.win.nuspec -OutputDirectory artifacts
 
       - name: Test
