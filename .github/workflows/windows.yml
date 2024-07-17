@@ -108,7 +108,7 @@ jobs:
               foreach ($group in $xml.package.metadata.dependencies.ChildNodes){
                   foreach ($dependency in $group.ChildNodes){
                       $packageId = $dependency.GetAttribute("id")
-                      if ($packageId.StartsWith("OpenCvSharp")){
+                      if ($packageId.StartsWith("MScottFord.Forks.OpenCvSharp")){
                           Write-Host "before: " $packageId "=" $dependency.GetAttribute("version")
                           $dependency.SetAttribute("version", $version)
                           Write-Host "after:  " $packageId "=" $dependency.GetAttribute("version")
