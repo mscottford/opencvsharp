@@ -1,6 +1,10 @@
+## Fork Notice
+
+This repository is a fork. Builds are published to NuGet under the `MScottFord.Forks` namespace. It notably does not build all of the packages from the upstream repository. It only builds the ones that I need. To start with, this included arm64 support for Windows.
+
 ![opencvsharp](https://socialify.git.ci/shimat/opencvsharp/image?description=1&forks=1&language=1&owner=1&pattern=Plus&stargazers=1&theme=Light)
 
-[![Github Actions Windows Status](https://github.com/shimat/opencvsharp/workflows/Windows%20Server%202022/badge.svg)](https://github.com/shimat/opencvsharp/actions)  [![Github Actions Ubuntu Status](https://github.com/shimat/opencvsharp/workflows/Ubuntu%2022.04/badge.svg)](https://github.com/shimat/opencvsharp/actions) [![GitHub license](https://img.shields.io/github/license/shimat/opencvsharp.svg)](https://github.com/shimat/opencvsharp/blob/master/LICENSE) 
+[![Github Actions Windows Status](https://github.com/shimat/mscottford/workflows/Windows%20Server%202022/badge.svg)](https://github.com/shimat/mscottford/actions)  [![GitHub license](https://img.shields.io/github/license/shimat/mscottford.svg)](https://github.com/shimat/mscottford/blob/master/LICENSE) 
 
 Old versions of OpenCvSharp are stored in [opencvsharp_2410](https://github.com/shimat/opencvsharp_2410).
 
@@ -9,52 +13,23 @@ Old versions of OpenCvSharp are stored in [opencvsharp_2410](https://github.com/
 ### Managed libraries
 | Package | Description | Link |
 |---------|-------------|------|
-|**OpenCvSharp4**| OpenCvSharp core libraries | [![NuGet version](https://badge.fury.io/nu/OpenCvSharp4.svg)](https://badge.fury.io/nu/OpenCvSharp4) |
-|**OpenCvSharp4.Extensions**| GDI+ Extensions | [![NuGet version](https://badge.fury.io/nu/OpenCvSharp4.Extensions.svg)](https://badge.fury.io/nu/OpenCvSharp4.Extensions) |
-|**OpenCvSharp4.WpfExtensions**| WPF Extensions | [![NuGet version](https://badge.fury.io/nu/OpenCvSharp4.WpfExtensions.svg)](https://badge.fury.io/nu/OpenCvSharp4.WpfExtensions) |
-|**OpenCvSharp4.Windows**| All-in-one package for Windows (except UWP) | [![NuGet version](https://badge.fury.io/nu/OpenCvSharp4.Windows.svg)](https://badge.fury.io/nu/OpenCvSharp4.Windows) |
+|**MScottFord.Forks.OpenCvSharp4**| OpenCvSharp core libraries | [![NuGet version](https://badge.fury.io/nu/MScottFord.Forks.OpenCvSharp4.svg)](https://badge.fury.io/nu/MScottFord.Forks.OpenCvSharp4) |
+|**MScottFord.Forks.OpenCvSharp4.Extensions**| GDI+ Extensions | [![NuGet version](https://badge.fury.io/nu/MScottFord.Forks.OpenCvSharp4.Extensions.svg)](https://badge.fury.io/nu/MScottFord.Forks.OpenCvSharp4.Extensions) |
 
 ### Native bindings
 | Package | Description | Link |
 |---------|-------------|------|
 |**OpenCvSharp4.runtime.win**| Native bindings for Windows x64/x86 (except UWP) | [![NuGet version](https://badge.fury.io/nu/OpenCvSharp4.runtime.win.svg)](https://badge.fury.io/nu/OpenCvSharp4.runtime.win) |
-|**OpenCvSharp4.runtime.uwp**| Native bindings for UWP (Universal Windows Platform) x64/x86/ARM | [![NuGet version](https://badge.fury.io/nu/OpenCvSharp4.runtime.uwp.svg)](https://badge.fury.io/nu/OpenCvSharp4.runtime.uwp) |
-|**OpenCvSharp4_.runtime.ubuntu.22.04-x64**| Native bindings for Ubuntu 22.04 x64 | [![NuGet version](https://badge.fury.io/nu/OpenCvSharp4_.runtime.ubuntu.22.04-x64.svg)](https://badge.fury.io/nu/OpenCvSharp4_.runtime.ubuntu.22.04-x64) |
-|**OpenCvSharp4.runtime.linux-arm**| Native bindings for Linux Arm | [![NuGet version](https://badge.fury.io/nu/OpenCvSharp4.runtime.linux-arm.svg)](https://www.nuget.org/packages/OpenCvSharp4.runtime.linux-arm/) |
-|**OpenCvSharp4.runtime.wasm**| Native bindings for WebAssembly | [![NuGet version](https://badge.fury.io/nu/OpenCvSharp4.runtime.wasm.svg)](https://www.nuget.org/packages/OpenCvSharp4.runtime.wasm/) |
 
 Native binding (OpenCvSharpExtern.dll / libOpenCvSharpExtern.so) is required to work OpenCvSharp. To use OpenCvSharp, you should add both `OpenCvSharp4` and `OpenCvSharp4.runtime.*` packages to your project. Currently, native bindings for Windows, UWP and Ubuntu are released.
-
-Packages named OpenCvSharp3-* and OpenCvSharp-* are deprecated.
-> [OpenCvSharp3-AnyCPU](https://www.nuget.org/packages/OpenCvSharp3-AnyCPU/) / [OpenCvSharp3-WithoutDll](https://www.nuget.org/packages/OpenCvSharp3-WithoutDll/) / [OpenCvSharp-AnyCPU](https://www.nuget.org/packages/OpenCvSharp-AnyCPU/) /  [OpenCvSharp-WithoutDll](https://www.nuget.org/packages/OpenCvSharp-WithoutDll/)
-
-## Docker images
-- [Ubuntu](https://github.com/shimat?tab=packages)
-- For Google App Engine Flexible (.NET Core 3.1): [shimat/appengine-aspnetcore3.1-opencv4.5.0](https://hub.docker.com/r/shimat/appengine-aspnetcore3.1-opencv4.5.0)
-- For AWS Lambda (.NET 5): [shimat/al2-dotnet5-opencv4.5.0](https://hub.docker.com/r/shimat/al2-dotnet5-opencv4.5.0)
-  - Code sample: https://github.com/shimat/opencvsharp_AWSLambdaSample
 
 ## Installation
 
 ### Windows (except UWP)
 Add `OpenCvSharp4` and `OpenCvSharp4.runtime.win` NuGet packages to your project. You can use `OpenCvSharp4.Windows` instead.
 
-### UWP
-Add `OpenCvSharp4` and `OpenCvSharp4.runtime.uwp` NuGet packages to your project. Note that `OpenCvSharp4.runtime.win` and `OpenCvSharp4.Windows` don't work for UWP. 
-
-### Ubuntu 22.04
-Add `OpenCvSharp4` and `OpenCvSharp4.runtime.ubuntu.22.04.x64` NuGet packages to your project.
-```
-dotnet new console -n ConsoleApp01
-cd ConsoleApp01
-dotnet add package OpenCvSharp4
-dotnet add package OpenCvSharp4_.runtime.ubuntu.22.04-x64
-# -- edit Program.cs --- # 
-dotnet run
-```
-
 ### Downloads
-If you do not use NuGet, get DLL files from the [release page](https://github.com/shimat/opencvsharp/releases).
+If you do not use NuGet, get DLL files from the [release page](https://github.com/mscottford/opencvsharp/releases).
 
 ## Target OpenCV
 * [OpenCV 4.10.0](http://opencv.org/) with [opencv_contrib](https://github.com/opencv/opencv_contrib)
@@ -66,9 +41,6 @@ If you do not use NuGet, get DLL files from the [release page](https://github.co
 ```
 PS1> Install-WindowsFeature Server-Media-Foundation
 ```
-* (Ubuntu) You must pre-install all the dependency packages needed to build OpenCV. Many packages such as libjpeg must be installed in order to work OpenCV. 
-https://www.learnopencv.com/install-opencv-4-on-ubuntu-18-04/
-
 
 **OpenCvSharp won't work on Unity and Xamarin platform.** For Unity, please consider using [OpenCV for Unity](https://assetstore.unity.com/packages/tools/integration/opencv-for-unity-21088) or some other solutions.
 
@@ -151,9 +123,9 @@ http://shimat.github.io/opencvsharp/api/OpenCvSharp.html
   - Open `OpenCvSharp.sln` and build
   
 #### How to customize OpenCV binaries yourself
-If you want to use some OpenCV features that are not provided by default in OpenCvSharp (e.g. GPU), you will have to build OpenCV yourself. The binary files of OpenCV for OpenCvSharp for Windows are created in the [opencv_files](https://github.com/shimat/opencv_files) repository. See the README.
+If you want to use some OpenCV features that are not provided by default in OpenCvSharp (e.g. GPU), you will have to build OpenCV yourself. The binary files of OpenCV for OpenCvSharp for Windows are created in the [opencv_files](https://github.com/mscottford/opencv_files) repository. See the README.
 
-- `git clone --recursive https://github.com/shimat/opencv_files`
+- `git clone --recursive https://github.com/mscottford/opencv_files`
 - Edit `build_windows.ps1` or `build_uwp.ps1` to customize the CMake parameters .
 - Run the PowerShell script.
 
@@ -163,7 +135,7 @@ If you want to use some OpenCV features that are not provided by default in Open
 - Install .NET Core SDK. https://learn.microsoft.com/ja-jp/dotnet/core/install/linux-ubuntu
 - Get OpenCvSharp source files
 ```
-git clone https://github.com/shimat/opencvsharp.git
+git clone https://github.com/mscottford/opencvsharp.git
 cd opencvsharp
 git fetch --all --tags --prune && git checkout ${OPENCVSHARP_VERSION}
 ```

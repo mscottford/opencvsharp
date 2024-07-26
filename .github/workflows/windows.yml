@@ -22,14 +22,6 @@ jobs:
           fetch-depth: 1
           submodules: true
 
-#      - name: Cache restored NuGet packages
-#        uses: actions/cache@v2
-#        with:
-#          path: ${{ github.workspace }}/.nuget/packages
-#          key: ${{ runner.os }}-nuget-${{ hashFiles('**/packages.lock.json') }}
-#          restore-keys: |
-#            ${{ runner.os }}-nuget-
-
       - name: NuGet restore
         shell: cmd
         run: |
@@ -77,9 +69,9 @@ jobs:
         shell: cmd
         run: msbuild OpenCvSharp.sln /t:build /p:configuration=Release /p:platform=x86 -maxcpucount
 
-      #- name: Build ARM
-      #  shell: cmd
-      #  run: msbuild OpenCvSharp.sln /t:build /p:configuration=Release /p:platform=ARM -maxcpucount
+      - name: Build ARM64
+        shell: cmd
+        run: msbuild OpenCvSharp.sln /t:build /p:configuration=Release /p:platform=ARM64 -maxcpucount
 
       - name: Install .NET
         uses: actions/setup-dotnet@v4
@@ -91,7 +83,6 @@ jobs:
         shell: cmd
         run: |
           dotnet build src/OpenCvSharp.Extensions/OpenCvSharp.Extensions.csproj -f net6.0 -p:configuration=Release -maxcpucount
-          dotnet build src/OpenCvSharp.WpfExtensions/OpenCvSharp.WpfExtensions.csproj -f net6.0-windows -p:configuration=Release -maxcpucount
 
       - name: Pack NuGet packages
         shell: powershell
@@ -111,13 +102,13 @@ jobs:
           $windowsNuspec = "${env:GITHUB_WORKSPACE}\nuget\OpenCvSharp4.Windows.nuspec"
           $extensionsNuspec = "${env:GITHUB_WORKSPACE}\nuget\OpenCvSharp4.Extensions.nuspec"
           $wpfExtensionsNuspec = "${env:GITHUB_WORKSPACE}\nuget\OpenCvSharp4.WpfExtensions.nuspec"
-          $nuspecFiles = @($windowsNuspec, $extensionsNuspec, $wpfExtensionsNuspec)
+          $nuspecFiles = @($extensionsNuspec)
           foreach ( $nuspecFile in $nuspecFiles ) {
               [xml]$xml = Get-Content $nuspecFile
               foreach ($group in $xml.package.metadata.dependencies.ChildNodes){
                   foreach ($dependency in $group.ChildNodes){
                       $packageId = $dependency.GetAttribute("id")
-                      if ($packageId.StartsWith("OpenCvSharp")){
+                      if ($packageId.StartsWith("MScottFord.Forks.OpenCvSharp")){
                           Write-Host "before: " $packageId "=" $dependency.GetAttribute("version")
                           $dependency.SetAttribute("version", $version)
                           Write-Host "after:  " $packageId "=" $dependency.GetAttribute("version")
@@ -131,9 +122,7 @@ jobs:
           }
 
           nuget pack nuget/OpenCvSharp4.nuspec -OutputDirectory artifacts -Symbols -SymbolPackageFormat snupkg
-          nuget pack nuget/OpenCvSharp4.Windows.nuspec -OutputDirectory artifacts
           nuget pack nuget/OpenCvSharp4.Extensions.nuspec -OutputDirectory artifacts -Symbols -SymbolPackageFormat snupkg
-          nuget pack nuget/OpenCvSharp4.WpfExtensions.nuspec -OutputDirectory artifacts -Symbols -SymbolPackageFormat snupkg
           nuget pack nuget/OpenCvSharp4.runtime.win.nuspec -OutputDirectory artifacts
 
       - name: Test

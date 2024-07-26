@@ -1,16 +1,16 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <package xmlns="http://schemas.microsoft.com/packaging/2010/07/nuspec.xsd">
     <metadata>
-        <id>OpenCvSharp4.runtime.win</id>
+        <id>MScottFord.Forks.OpenCvSharp4.runtime.win</id>
         <version>4.6.0.20220607</version>
-        <title>OpenCvSharp4 native bindings for Windows x64/x86 (except UWP)</title>
+        <title>[MScottFord Fork] OpenCvSharp4 native bindings for Windows x64/x86 (except UWP)</title>
         <authors>shimat</authors>
         <license type="expression">Apache-2.0</license>
         <projectUrl>https://github.com/shimat/opencvsharp</projectUrl>
         <iconUrl>https://raw.githubusercontent.com/shimat/opencvsharp/master/nuget/icon/opencvsharp.png</iconUrl>
         <requireLicenseAcceptance>false</requireLicenseAcceptance>
-        <description>Internal implementation package for OpenCvSharp to work on Windows except UWP.</description>
-        <summary>Internal implementation package for OpenCvSharp to work on Windows except UWP.</summary>
+        <description>[MScottFord Fork] Internal implementation package for OpenCvSharp to work on Windows except UWP.</description>
+        <summary>[MScottFord Fork] Internal implementation package for OpenCvSharp to work on Windows except UWP.</summary>
         <releaseNotes></releaseNotes>
         <copyright>Copyright 2008-2020</copyright>
         <tags>Image Processing OpenCV Wrapper FFI opencvsharp</tags>
