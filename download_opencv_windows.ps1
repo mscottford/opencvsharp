@@ -1,4 +1,4 @@
-$tag = "4.10.0.20240717"
+$tag = "4.10.0.20240810"
 $version = "4100"
 $uriArray = @(
     "https://github.com/mscottford/opencv_files/releases/download/${tag}/opencv${version}_win_x64.zip"
